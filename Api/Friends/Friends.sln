@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Friends.Application", "Frie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Friends.Localization", "Friends.Localization\Friends.Localization.csproj", "{0EAF2233-60A0-4084-8558-3A4E1D5EC927}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Friends.Domain", "Friends.Domain\Friends.Domain.csproj", "{E883747E-F34B-4981-B783-AB69D0525C01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{0EAF2233-60A0-4084-8558-3A4E1D5EC927}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EAF2233-60A0-4084-8558-3A4E1D5EC927}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EAF2233-60A0-4084-8558-3A4E1D5EC927}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E883747E-F34B-4981-B783-AB69D0525C01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E883747E-F34B-4981-B783-AB69D0525C01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E883747E-F34B-4981-B783-AB69D0525C01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E883747E-F34B-4981-B783-AB69D0525C01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

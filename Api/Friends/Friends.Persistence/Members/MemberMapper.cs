@@ -1,0 +1,38 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Friends.Domain.Members;
+
+namespace Friends.Persistence.Members
+{
+    public static class MemberMapper
+    {
+
+        public static void Map(ModelBuilder builder)
+        {
+            #region Members
+            builder.Entity<Member>(entity =>
+            {
+                entity.ToTable("Members");
+                entity.HasKey(m => m.Id);
+                entity.Property(m => m.Id).IsUnicode(false);
+                entity.Property(m => m.Name).IsRequired();
+                entity.Property(m => m.Website).IsRequired();
+                entity
+                    .HasMany(f => f.MemberFriends)
+                            .WithOne(m => m.Friend1)
+                            .HasForeignKey("FriendId")
+                            .OnDelete(DeleteBehavior.Cascade);
+            });
+            #endregion
+
+            #region MemberFriends
+
+            builder.Entity<MemberFriend>(entity =>
+            {
+                entity.ToTable("MemberFriends");
+                entity.HasKey(f => f.Id);
+                entity.Property(f => f.Id).IsUnicode(false);
+            });
+            #endregion
+        }
+    }
+}

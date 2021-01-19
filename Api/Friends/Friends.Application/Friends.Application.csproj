@@ -7,6 +7,11 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="Kvizhinadze.DotNetHelpers" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Friends.Domain\Friends.Domain.csproj" />
   </ItemGroup>
 
 </Project>

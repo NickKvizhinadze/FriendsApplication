@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Friends.Persistence.Users;
+using Friends.Persistence.Members;
 
 namespace Friends.Persistence
 {
@@ -41,6 +42,7 @@ namespace Friends.Persistence
 
             //Mappings
             UserMapper.Map(modelBuilder);
+            MemberMapper.Map(modelBuilder);
         }
 
         #endregion
