@@ -21,15 +21,5 @@ namespace Friends.Persistence.Members
         }
 
         #endregion
-
-
-        #region Overrides
-        //public override void Add(MemberFriend entity)
-        //{
-        //    _context.Entry(entity.Friend).State = EntityState.Unchanged;
-        //    _context.Entry(entity.Friend2).State = EntityState.Unchanged;
-        //    base.Update(entity);
-        //}
-        #endregion
     }
 }

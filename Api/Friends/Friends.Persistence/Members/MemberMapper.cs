@@ -18,7 +18,7 @@ namespace Friends.Persistence.Members
                 entity.Property(m => m.Website).IsRequired();
                 entity
                     .HasMany(f => f.Friends)
-                            .WithOne(m => m.Friend)
+                            .WithOne(m => m.Friend!)
                             .HasForeignKey("FriendId")
                             .OnDelete(DeleteBehavior.Cascade);
             });
@@ -31,6 +31,18 @@ namespace Friends.Persistence.Members
                 entity.ToTable("MemberFriends");
                 entity.HasKey(f => f.Id);
                 entity.Property(f => f.Id).IsUnicode(false);
+            });
+            #endregion
+
+
+            #region MemberFriends
+
+            builder.Entity<Heading>(entity =>
+            {
+                entity.ToTable("Headings");
+                entity.HasKey(f => f.Id);
+                entity.Property(f => f.Id).IsUnicode(false);
+                entity.Property(f => f.Key).IsUnicode(false).HasMaxLength(5);
             });
             #endregion
         }

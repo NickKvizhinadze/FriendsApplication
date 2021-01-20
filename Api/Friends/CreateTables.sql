@@ -7,23 +7,23 @@
 
 GO
 
+CREATE TABLE [Headings] (
+    [Id] varchar(450) NOT NULL,
+    [Key] varchar(5) NOT NULL,
+    [Value] nvarchar(max) NOT NULL,
+    [MemberId] varchar(900) NULL,
+    CONSTRAINT [PK_Heading] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Heading_Members_MemberId] FOREIGN KEY ([MemberId]) REFERENCES [Members] ([Id]) ON DELETE NO ACTION
+);
+
+GO
+
 CREATE TABLE [Roles] (
     [Id] nvarchar(450) NOT NULL,
     [Name] nvarchar(256) NULL,
     [NormalizedName] nvarchar(256) NULL,
     [ConcurrencyStamp] nvarchar(max) NULL,
     CONSTRAINT [PK_Roles] PRIMARY KEY ([Id])
-);
-
-GO
-
-CREATE TABLE [Heading] (
-    [Id] nvarchar(450) NOT NULL,
-    [Key] nvarchar(max) NOT NULL,
-    [Value] nvarchar(max) NOT NULL,
-    [MemberId] varchar(900) NULL,
-    CONSTRAINT [PK_Heading] PRIMARY KEY ([Id]),
-    CONSTRAINT [FK_Heading_Members_MemberId] FOREIGN KEY ([MemberId]) REFERENCES [Members] ([Id]) ON DELETE NO ACTION
 );
 
 GO
