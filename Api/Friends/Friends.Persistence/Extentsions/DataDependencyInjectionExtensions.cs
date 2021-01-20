@@ -9,6 +9,7 @@ namespace Friends.Persistence.Extentsions
         public static void RegisterRepositories(this IServiceCollection services)
         {
             services.AddScoped(typeof(IMembersRepository), typeof(MembersRepository));
+            services.AddScoped(typeof(IMemberFriendsRepository), typeof(MemberFriendsRepository));
         }
 
         public static void RegisterUnitOfWorks(this IServiceCollection services)

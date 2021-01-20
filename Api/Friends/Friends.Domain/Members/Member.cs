@@ -1,5 +1,7 @@
 ﻿using Friends.Domain.Common;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Friends.Domain.Members
 {
@@ -8,6 +10,7 @@ namespace Friends.Domain.Members
         #region Fields
         protected readonly List<MemberFriend> _memberFriends = new List<MemberFriend>();
         #endregion
+
         #region Constructor
         public Member() : base()
         {
@@ -16,7 +19,7 @@ namespace Friends.Domain.Members
         }
 
         public Member(string id, string name, string website)
-            :base(id)
+            : base(id)
         {
             Name = name;
             Website = website;
@@ -29,20 +32,7 @@ namespace Friends.Domain.Members
         #endregion
 
         #region Navigation Properties
-        public IReadOnlyCollection<MemberFriend> MemberFriends => _memberFriends;
-        #endregion
-
-        #region Methods
-        public void Update(string name, string website)
-        {
-            Name = name;
-            Website = website;
-        }
-
-        public void AddMembers(MemberFriend memberFriend)
-        {
-            _memberFriends.Add(memberFriend);
-        }
+        public IReadOnlyCollection<MemberFriend> Friends => _memberFriends;
         #endregion
     }
 }

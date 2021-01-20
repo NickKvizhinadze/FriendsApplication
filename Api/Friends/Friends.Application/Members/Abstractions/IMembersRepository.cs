@@ -9,5 +9,6 @@ namespace Friends.Application.Members.Abstractions
     public interface IMembersRepository : IBaseRepository<Member, string>
     {
         Task<(List<Member> users, int totalCount)> GetAllAsync(BaseAdditional<BaseFilter> additional);
+        Task<Member> GetAsFriendAsync(string id);
     }
 }

@@ -33,10 +33,18 @@ namespace Friends.Api.Members
 
         [HttpPost]
         //TODO: add authorize attribute
-        public async Task<ActionResult<PagedList<MemberDto>>> CreateAsync([FromBody] MemberCreateRequest request)
+        public async Task<ActionResult<MemberDto>> CreateAsync([FromBody] MemberCreateRequest request)
         {
-            var members = await _service.CreateAsync(request);
-            return Ok(members);
+            var result = await _service.CreateAsync(request);
+            return CustomResult(result);
+        }
+
+        [HttpPost("{id}/AddFriend")]
+        //TODO: add authorize attribute
+        public async Task<ActionResult<MemberDto>> AddFriendAsync(string id, [FromBody] AddFriendRequest request)
+        {
+            var members = await _service.AddFriendAsync(id, request);
+            return CustomResult(members);
         }
         #endregion
     }

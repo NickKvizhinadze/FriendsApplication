@@ -8,11 +8,12 @@ using Newtonsoft.Json;
 using DotNetHelpers.Models;
 using Friends.Localization;
 using Friends.Common.Models;
+using Friends.Common.Helpers;
 using Friends.Domain.Members;
 using Friends.Application.Common;
 using Friends.Application.Members.Models;
 using Friends.Application.Members.Abstractions;
-using Friends.Common.Helpers;
+using System.Linq;
 
 namespace Friends.Application.Members
 {
@@ -44,7 +45,7 @@ namespace Friends.Application.Members
             try
             {
                 var urlResult = await CuttlyHelpers.GetShorenerUrlasync(_settings, request.Website);
-                if(!urlResult.Succeeded)
+                if (!urlResult.Succeeded)
                 {
                     var result = new Result<MemberDto>();
                     result.AddErrors(urlResult.Errors);
@@ -60,6 +61,35 @@ namespace Friends.Application.Members
             {
                 _logger.LogError(ex, $"{nameof(MemberService)} => {nameof(CreateAsync)} => Member has not created => data: {JsonConvert.SerializeObject(request)}");
                 return Result.Error<MemberDto>(ErrorMessages.MemberNotCreated);
+            }
+        }
+
+        public async Task<Result<MemberDto>> AddFriendAsync(string memberId, AddFriendRequest request)
+        {
+            try
+            {
+                var member = await _uow.Members.GetAsync(memberId);
+                if (member is null)
+                    return Result.Error<MemberDto>(ErrorMessages.MemberNotFound);
+                var friend = await _uow.Members.GetAsync(request.FriendId);
+                if (friend is null)
+                    return Result.Error<MemberDto>(ErrorMessages.FriendNotFound);
+
+                if (member.Friends.Any(x => x.Friend2 == friend))
+                    return Result.Error<MemberDto>(ErrorMessages.AlreadyFriends);
+
+                var memberFriend = new List<MemberFriend> {
+                    new MemberFriend(Guid.NewGuid().ToString(), member.Id, friend.Id),
+                    new MemberFriend(Guid.NewGuid().ToString(), friend.Id, member.Id)
+                };
+                _uow.MemberFriends.AddRange(memberFriend);
+                await _uow.SaveAsync();
+                return Result.Success(_mapper.Map<MemberDto>(member));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"{nameof(MemberService)} => {nameof(CreateAsync)} => Member has not created => data: {JsonConvert.SerializeObject(request)}");
+                return Result.Error<MemberDto>(ErrorMessages.FriendNotAdded);
             }
         }
         #endregion

@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AlreadyFriends" xml:space="preserve">
+    <value>They are already friends</value>
+  </data>
+  <data name="FriendNotAdded" xml:space="preserve">
+    <value>Friend not added</value>
+  </data>
+  <data name="FriendNotFound" xml:space="preserve">
+    <value>Friend not found</value>
+  </data>
   <data name="ImageIsRequired" xml:space="preserve">
     <value>Image is required</value>
   </data>
@@ -125,6 +134,9 @@
   </data>
   <data name="MemberNotCreated" xml:space="preserve">
     <value>Member not created</value>
+  </data>
+  <data name="MemberNotFound" xml:space="preserve">
+    <value>Member not found</value>
   </data>
   <data name="MinAge" xml:space="preserve">
     <value>Should be at least {0}</value>

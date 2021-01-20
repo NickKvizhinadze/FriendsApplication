@@ -61,6 +61,33 @@ namespace Friends.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to They are already friends.
+        /// </summary>
+        public static string AlreadyFriends {
+            get {
+                return ResourceManager.GetString("AlreadyFriends", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Friend not added.
+        /// </summary>
+        public static string FriendNotAdded {
+            get {
+                return ResourceManager.GetString("FriendNotAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Friend not found.
+        /// </summary>
+        public static string FriendNotFound {
+            get {
+                return ResourceManager.GetString("FriendNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image is required.
         /// </summary>
         public static string ImageIsRequired {
@@ -84,6 +111,15 @@ namespace Friends.Localization {
         public static string MemberNotCreated {
             get {
                 return ResourceManager.GetString("MemberNotCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member not found.
+        /// </summary>
+        public static string MemberNotFound {
+            get {
+                return ResourceManager.GetString("MemberNotFound", resourceCulture);
             }
         }
         

@@ -17,8 +17,8 @@ namespace Friends.Persistence.Members
                 entity.Property(m => m.Name).IsRequired();
                 entity.Property(m => m.Website).IsRequired();
                 entity
-                    .HasMany(f => f.MemberFriends)
-                            .WithOne(m => m.Friend1)
+                    .HasMany(f => f.Friends)
+                            .WithOne(m => m.Friend)
                             .HasForeignKey("FriendId")
                             .OnDelete(DeleteBehavior.Cascade);
             });

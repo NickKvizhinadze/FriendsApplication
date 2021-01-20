@@ -34,6 +34,14 @@ namespace Friends.Persistence.Members
                        .ToListAsync();
             return (result, totalCount);
         }
+
+        public Task<Member> GetAsFriendAsync(string id)
+            => TableNoTracking.FirstOrDefaultAsync(f => f.Id == id);
+        #endregion
+
+        #region Overrides
+        public override Task<Member> GetAsync(string id)
+            => GetWithIncludes(false).Include(c => c.Friends).FirstOrDefaultAsync(f => f.Id == id);
         #endregion
 
         #region Private Methods
@@ -66,7 +74,7 @@ namespace Friends.Persistence.Members
         private IQueryable<Member> GetWithIncludes(bool withTracking)
         {
             var table = withTracking ? Table : TableNoTracking;
-            return table.Include(c => c.MemberFriends);
+            return table.Include(c => c.Friends).ThenInclude(f => f.Friend2);
         }
 
         #endregion

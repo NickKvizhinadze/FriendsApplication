@@ -61,6 +61,15 @@ namespace Friends.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Friend.
+        /// </summary>
+        public static string Friend {
+            get {
+                return ResourceManager.GetString("Friend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {

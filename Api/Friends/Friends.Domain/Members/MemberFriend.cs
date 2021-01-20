@@ -5,24 +5,26 @@ namespace Friends.Domain.Members
     public class MemberFriend: Entity<string>
     {
         #region Constructor
-        public MemberFriend()
+        public MemberFriend(): base()
         {
-
-            Friend1 = new Member();
-            Friend2 = new Member();
+            FriendId = string.Empty;
+            Friend2Id = string.Empty;
         }
 
-        public MemberFriend(Member friend1, Member friend2)
+        public MemberFriend(string id, string friendId, string friend2Id): base(id)
         {
-            Friend1 = friend1;
-            Friend2 = friend2;
+            FriendId = friendId;
+            Friend2Id = friend2Id;
         }
 
         #endregion
 
+        public string FriendId { get; set; }
+        public string Friend2Id { get; set; }
+
         #region Properties
-        public Member Friend1 { get; set; }
-        public Member Friend2 { get; set; }
+        public Member? Friend { get; set; }
+        public Member? Friend2 { get; set; }
         #endregion
     }
 }

@@ -7,7 +7,8 @@ namespace Friends.Application.Members.Abstractions
 {
     public interface IMemberService
     {
-        Task<Result<MemberDto>> CreateAsync(MemberCreateRequest request);
         Task<PagedList<MemberDto>> GetAllAsync(BaseAdditional<BaseFilter> additional);
+        Task<Result<MemberDto>> CreateAsync(MemberCreateRequest request);
+        Task<Result<MemberDto>> AddFriendAsync(string memberId, AddFriendRequest request);
     }
 }
