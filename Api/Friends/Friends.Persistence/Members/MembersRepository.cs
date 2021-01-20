@@ -43,7 +43,7 @@ namespace Friends.Persistence.Members
             var result = GetWithIncludes(false);
 
             if (!string.IsNullOrEmpty(filter.SearchValue))
-                result = result.Where(u =>u.Name.ToLower().Contains(filter.SearchValue.ToLower()));
+                result = result.Where(u => u.Name.ToLower().Contains(filter.SearchValue.ToLower()));
             //Sorting
             result = SortResult(result, additional.Sorting);
 
@@ -69,6 +69,6 @@ namespace Friends.Persistence.Members
             return table.Include(c => c.MemberFriends);
         }
 
-#endregion
+        #endregion
     }
 }

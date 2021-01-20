@@ -11,6 +11,8 @@ using Friends.Common.Models;
 using Friends.Application.Users;
 using System.Threading.Tasks;
 using Friends.Api.Middlewares;
+using Friends.Application.Extentsions;
+using Friends.Persistence.Extentsions;
 
 namespace Friends.Api
 {
@@ -24,7 +26,6 @@ namespace Friends.Api
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
-            ////services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped(_ => new ApplicationDbContext(Configuration.GetConnectionString("DefaultConnection")));
             services.AddCors(o => o.AddPolicy("CorsPolicy",
                 bullder =>
@@ -41,9 +42,9 @@ namespace Friends.Api
             services.AddSingleton(Configuration);
             services.AddAutoMapper(Assembly.GetAssembly(typeof(UserProfile)));
 
-            //services.RegisterRepositories();
-            //services.RegisterUnitOfWorks();
-            //services.RegisterServices();
+            services.RegisterRepositories();
+            services.RegisterUnitOfWorks();
+            services.RegisterServices();
 
             services.AddControllers();
 

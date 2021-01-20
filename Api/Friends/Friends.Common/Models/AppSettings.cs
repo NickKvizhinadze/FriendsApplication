@@ -4,6 +4,7 @@
     {
         public JwtSettings Jwt { get; set; } = new JwtSettings();
         public string SwaggerJsonUrl { get; set; } = string.Empty;
+        public int PerPage { get; set; }
     }
 
     public class JwtSettings

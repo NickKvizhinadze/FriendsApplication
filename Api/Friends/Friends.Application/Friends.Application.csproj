@@ -8,9 +8,12 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="Kvizhinadze.DotNetHelpers" Version="2.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.11" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Friends.Common\Friends.Common.csproj" />
     <ProjectReference Include="..\Friends.Domain\Friends.Domain.csproj" />
   </ItemGroup>
 
