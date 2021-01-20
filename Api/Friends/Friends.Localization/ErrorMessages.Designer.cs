@@ -70,6 +70,15 @@ namespace Friends.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This is not valid email.
+        /// </summary>
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Friend not added.
         /// </summary>
         public static string FriendNotAdded {
@@ -102,6 +111,15 @@ namespace Friends.Localization {
         public static string InternalServerError {
             get {
                 return ResourceManager.GetString("InternalServerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid login attempt..
+        /// </summary>
+        public static string InvalidLoginAttempt {
+            get {
+                return ResourceManager.GetString("InvalidLoginAttempt", resourceCulture);
             }
         }
         
@@ -147,6 +165,15 @@ namespace Friends.Localization {
         public static string OnlyEnglishOrGeorgian {
             get {
                 return ResourceManager.GetString("OnlyEnglishOrGeorgian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwords should match.
+        /// </summary>
+        public static string PasswordCompare {
+            get {
+                return ResourceManager.GetString("PasswordCompare", resourceCulture);
             }
         }
         

@@ -120,6 +120,9 @@
   <data name="AlreadyFriends" xml:space="preserve">
     <value>They are already friends</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>This is not valid email</value>
+  </data>
   <data name="FriendNotAdded" xml:space="preserve">
     <value>Friend not added</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="InternalServerError" xml:space="preserve">
     <value>Server error</value>
+  </data>
+  <data name="InvalidLoginAttempt" xml:space="preserve">
+    <value>Invalid login attempt.</value>
   </data>
   <data name="MemberNotCreated" xml:space="preserve">
     <value>Member not created</value>
@@ -146,6 +152,9 @@
   </data>
   <data name="OnlyEnglishOrGeorgian" xml:space="preserve">
     <value>{0} Field should contain only Latin or Georgian letters</value>
+  </data>
+  <data name="PasswordCompare" xml:space="preserve">
+    <value>Passwords should match</value>
   </data>
   <data name="PersonNotFound" xml:space="preserve">
     <value>Person not found</value>
