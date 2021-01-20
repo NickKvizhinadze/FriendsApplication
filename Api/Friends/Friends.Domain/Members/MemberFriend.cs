@@ -5,6 +5,12 @@ namespace Friends.Domain.Members
     public class MemberFriend: Entity<string>
     {
         #region Constructor
+        public MemberFriend()
+        {
+
+            Friend1 = new Member();
+            Friend2 = new Member();
+        }
 
         public MemberFriend(Member friend1, Member friend2)
         {
