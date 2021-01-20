@@ -17,6 +17,17 @@ CREATE TABLE [Roles] (
 
 GO
 
+CREATE TABLE [Heading] (
+    [Id] nvarchar(450) NOT NULL,
+    [Key] nvarchar(max) NOT NULL,
+    [Value] nvarchar(max) NOT NULL,
+    [MemberId] varchar(900) NULL,
+    CONSTRAINT [PK_Heading] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Heading_Members_MemberId] FOREIGN KEY ([MemberId]) REFERENCES [Members] ([Id]) ON DELETE NO ACTION
+);
+
+GO
+
 CREATE TABLE [Users] (
     [Id] nvarchar(450) NOT NULL,
     [UserName] nvarchar(256) NULL,

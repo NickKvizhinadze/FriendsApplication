@@ -44,7 +44,10 @@ namespace Friends.Application.Members
         {
             try
             {
-                var urlResult = await CuttlyHelpers.GetShorenerUrlasync(_settings, request.Website);
+                if (await _uow.Members.ExistsAsync(request.Name))
+                    return Result.Error<MemberDto>(ErrorMessages.MemberAlreadyExists);
+
+                var urlResult = await HttpHelper.GetShorenerUrlasync(_settings, request.Website);
                 if (!urlResult.Succeeded)
                 {
                     var result = new Result<MemberDto>();
@@ -52,7 +55,12 @@ namespace Friends.Application.Members
                     return result;
                 }
 
-                var member = new Member(Guid.NewGuid().ToString(), request.Name, urlResult.Data);
+                var headingsResult = (await HttpHelper.GetHeadings(request.Website))
+                    .Select(h => new Heading(Guid.NewGuid().ToString(), h.Key, h.Value))
+                    .ToList();
+
+
+                var member = new Member(Guid.NewGuid().ToString(), request.Name, urlResult.Data, headingsResult);
                 _uow.Members.Add(member);
                 await _uow.SaveAsync();
                 return Result.Success(_mapper.Map<MemberDto>(member));

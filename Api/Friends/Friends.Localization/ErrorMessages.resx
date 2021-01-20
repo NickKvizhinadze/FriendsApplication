@@ -138,6 +138,9 @@
   <data name="InvalidLoginAttempt" xml:space="preserve">
     <value>Invalid login attempt.</value>
   </data>
+  <data name="MemberAlreadyExists" xml:space="preserve">
+    <value>Member already exists</value>
+  </data>
   <data name="MemberNotCreated" xml:space="preserve">
     <value>Member not created</value>
   </data>

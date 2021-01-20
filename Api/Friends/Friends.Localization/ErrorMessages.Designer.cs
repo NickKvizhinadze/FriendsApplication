@@ -124,6 +124,15 @@ namespace Friends.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member already exists.
+        /// </summary>
+        public static string MemberAlreadyExists {
+            get {
+                return ResourceManager.GetString("MemberAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member not created.
         /// </summary>
         public static string MemberNotCreated {

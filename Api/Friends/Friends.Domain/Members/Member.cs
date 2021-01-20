@@ -9,6 +9,7 @@ namespace Friends.Domain.Members
     {
         #region Fields
         protected readonly List<MemberFriend> _memberFriends = new List<MemberFriend>();
+        protected readonly List<Heading> _headings = new List<Heading>();
         #endregion
 
         #region Constructor
@@ -18,11 +19,12 @@ namespace Friends.Domain.Members
             Website = string.Empty;
         }
 
-        public Member(string id, string name, string website)
+        public Member(string id, string name, string website, List<Heading> headings)
             : base(id)
         {
             Name = name;
             Website = website;
+            _headings.AddRange(headings);
         }
         #endregion
 
@@ -33,6 +35,7 @@ namespace Friends.Domain.Members
 
         #region Navigation Properties
         public IReadOnlyCollection<MemberFriend> Friends => _memberFriends;
+        public IReadOnlyCollection<Heading> Headings => _headings;
         #endregion
     }
 }
