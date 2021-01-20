@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Friends.Common\Friends.Common.csproj" />
     <ProjectReference Include="..\Friends.Domain\Friends.Domain.csproj" />
+    <ProjectReference Include="..\Friends.Localization\Friends.Localization.csproj" />
   </ItemGroup>
 
 </Project>

@@ -79,6 +79,15 @@ namespace Friends.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member not created.
+        /// </summary>
+        public static string MemberNotCreated {
+            get {
+                return ResourceManager.GetString("MemberNotCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Should be at least {0}.
         /// </summary>
         public static string MinAge {

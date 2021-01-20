@@ -15,7 +15,8 @@ namespace Friends.Domain.Members
             Website = string.Empty;
         }
 
-        public Member(string name, string website)
+        public Member(string id, string name, string website)
+            :base(id)
         {
             Name = name;
             Website = website;
