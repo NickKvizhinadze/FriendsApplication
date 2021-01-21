@@ -1,4 +1,4 @@
 export class Heading {
-    key: string;
-    value: string;
+    Key: string;
+    Value: string;
 }

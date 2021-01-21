@@ -1,1 +1,62 @@
-<p>details works!</p>
+<div class="container-fluid mt-3 mx-2">
+  <div class="row">
+    <div class="col-6">
+      <div class="card" style="width: 100%">
+        <div class="card-body">
+          <h5 class="card-title">{{ member.name }}</h5>
+          <div class="card-text">
+            {{ member.website }}
+            <p>
+              <small
+                *ngFor="let heading of member.headings"
+                class="btn btn-light btn-sm mr-1"
+              >
+                {{ heading.Value }}
+              </small>
+            </p>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let friend of member.friends">
+            {{ friend }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card" style="width: 100%">
+        <div class="card-body">
+          <div class="alert alert-danger" *ngIf="getErrorKeys().length > 0">
+            <div *ngFor="let key of getErrorKeys()" class="text-danger">
+              {{ errors[key] }}
+            </div>
+          </div>
+          <div class="alert alert-danger" *ngIf="loadingFaild">
+            Could not get friends
+          </div>
+          <div class="form-group">
+            <input
+              id="typeahead-basic"
+              type="text"
+              class="form-control"
+              [resultFormatter]="friendFormatter"
+              [inputFormatter]="friendInputFormatter"
+              [(ngModel)]="friend"
+              [ngbTypeahead]="search"
+            />
+            <div *ngIf="this.loadingFriends" class="text-center mt-2">
+              <fa-icon [icon]="faSpinner" [spin]="true" size="2x"></fa-icon>
+            </div>
+            <hr />
+            <pre *ngIf="friend">Friend: {{ friend.text }}</pre>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-success float-right" [disabled]="!friend">
+              Add as a friend
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

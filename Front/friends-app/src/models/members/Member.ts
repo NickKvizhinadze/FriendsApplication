@@ -1,7 +1,7 @@
 import { Heading } from './Heading';
 
 export class Member {
-    id: number;
+    id: string;
     name: string;
     website: string;
     friends: string[] | null;

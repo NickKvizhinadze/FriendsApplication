@@ -37,7 +37,6 @@ export class CreateMemberComponent implements OnInit {
 
     this.service.create(this.memberForm.value).
       subscribe(() => {
-        debugger;
         this.router.navigate(['/members']);
       }, error => {
         this.errors = error.error;

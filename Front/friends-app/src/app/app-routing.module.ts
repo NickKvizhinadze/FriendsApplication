@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { MembersComponent } from './components/members/index/index.component';
 import { CreateMemberComponent } from './components/members/create/create.component';
+import { MemberDetailsComponent } from './components/members/details/details.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,11 @@ const routes: Routes = [
     path: 'members/create',
     pathMatch: 'full',
     component: CreateMemberComponent
+  },
+  {
+    path: 'members/details/:id',
+    pathMatch: 'full',
+    component: MemberDetailsComponent
   }
 ];
 
