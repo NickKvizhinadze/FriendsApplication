@@ -6,6 +6,7 @@ using DotNetHelpers.MvcCore;
 using Friends.Application.Common;
 using Friends.Application.Members.Models;
 using Friends.Application.Members.Abstractions;
+using System.Collections.Generic;
 
 namespace Friends.Api.Members
 {
@@ -57,6 +58,13 @@ namespace Friends.Api.Members
         {
             var members = await _service.AddFriendAsync(id, request);
             return CustomResult(members);
+        }
+
+        [HttpGet("GetDropdownList")]
+        public async Task<ActionResult<List<Dropdown<string>>>> GetDropdownListAsync(string searchValue)
+        {
+            var members = await _service.GetAsDropdownListAsync(searchValue);
+            return Ok(members);
         }
         #endregion
     }

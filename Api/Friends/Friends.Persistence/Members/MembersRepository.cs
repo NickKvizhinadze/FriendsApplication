@@ -49,6 +49,11 @@ namespace Friends.Persistence.Members
                 .Where(m => m.Friends.All(f => f.Friend2Id != id) && m.Headings.Any(h => h.Value == heading))
                 .ToListAsync();
         }
+
+        public Task<Dictionary<string, string>> GetAsDictionaryAsync(string searchValue) 
+            => TableNoTracking
+                .Where(m => string.IsNullOrWhiteSpace(searchValue) || m.Name.ToLower().Contains(searchValue.ToLower()))
+                .ToDictionaryAsync(m => m.Id, m => m.Name);
         #endregion
 
         #region Overrides

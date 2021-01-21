@@ -112,9 +112,12 @@ namespace Friends.Application.Members
                 return Result.Error<MemberDto>(ErrorMessages.FriendNotAdded);
             }
         }
-        #endregion
 
-        #region Private Methods
+        public async Task<List<Dropdown<string>>> GetAsDropdownListAsync(string searchValue)
+        {
+            var members = await _uow.Members.GetAsDictionaryAsync(searchValue);
+            return members.Select(m => new Dropdown<string>(m.Key, m.Value)).ToList();
+        }
         #endregion
     }
 }

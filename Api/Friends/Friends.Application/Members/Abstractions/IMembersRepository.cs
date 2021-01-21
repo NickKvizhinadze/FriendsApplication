@@ -12,5 +12,6 @@ namespace Friends.Application.Members.Abstractions
         Task<Member> GetAsFriendAsync(string id);
         Task<bool> ExistsAsync(string name);
         Task<List<Member>> GetExpertsAsync(string id, string heading);
+        Task<Dictionary<string, string>> GetAsDictionaryAsync(string searchValue);
     }
 }
