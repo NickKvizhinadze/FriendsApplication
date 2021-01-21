@@ -5,6 +5,8 @@ import { MembersComponent } from './components/members/index/index.component';
 import { CreateMemberComponent } from './components/members/create/create.component';
 import { MemberDetailsComponent } from './components/members/details/details.component';
 import { MemberExpertsComponent } from './components/members/experts/experts.component';
+import { SigninComponent } from './components/accounts/signin/signin.component';
+import { SignupComponent } from './components/accounts/signup/signup.component';
 
 const routes: Routes = [
   {
@@ -36,6 +38,16 @@ const routes: Routes = [
     path: 'members/experts/:id',
     pathMatch: 'full',
     component: MemberExpertsComponent
+  },
+  {
+    path: 'signin',
+    pathMatch: 'full',
+    component: SigninComponent
+  },
+  {
+    path: 'signup',
+    pathMatch: 'full',
+    component: SignupComponent
   }
 ];
 

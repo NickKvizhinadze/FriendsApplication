@@ -13,6 +13,8 @@ import { PagingComponent } from './components/shared/paging/paging.component';
 import { CreateMemberComponent } from './components/members/create/create.component';
 import { MemberDetailsComponent } from './components/members/details/details.component';
 import { MemberExpertsComponent } from './components/members/experts/experts.component';
+import { SigninComponent } from './components/accounts/signin/signin.component';
+import { SignupComponent } from './components/accounts/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { MemberExpertsComponent } from './components/members/experts/experts.com
     PagingComponent,
     CreateMemberComponent,
     MemberDetailsComponent,
-    MemberExpertsComponent
+    MemberExpertsComponent,
+    SigninComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
