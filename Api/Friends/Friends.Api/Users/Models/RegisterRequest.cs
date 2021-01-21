@@ -11,9 +11,6 @@ namespace Friends.Api.Users.Models
             Email = string.Empty;
             Password = string.Empty;
             ConfirmPassword = string.Empty;
-            CallbackUrl = string.Empty;
-            Firstname = string.Empty;
-            Lastname = string.Empty;
         }
         #endregion
 
@@ -28,17 +25,6 @@ namespace Friends.Api.Users.Models
 
         [Compare(nameof(Password), ErrorMessageResourceName = nameof(ErrorMessages.PasswordCompare), ErrorMessageResourceType = typeof(ErrorMessages))]
         public string ConfirmPassword { get; set; }
-
-        [Required(ErrorMessageResourceName = nameof(ErrorMessages.Required), ErrorMessageResourceType = typeof(ErrorMessages))]
-        public string CallbackUrl { get; set; }
-
-        [Required(ErrorMessageResourceName = nameof(ErrorMessages.Required), ErrorMessageResourceType = typeof(ErrorMessages))]
-        [StringLength(50, MinimumLength = 2, ErrorMessageResourceName = nameof(ErrorMessages.MinAndMaxLength), ErrorMessageResourceType = typeof(ErrorMessages))]
-        public string Firstname { get; set; }
-
-        [Required(ErrorMessageResourceName = nameof(ErrorMessages.Required), ErrorMessageResourceType = typeof(ErrorMessages))]
-        [StringLength(50, MinimumLength = 2, ErrorMessageResourceName = nameof(ErrorMessages.MinAndMaxLength), ErrorMessageResourceType = typeof(ErrorMessages))]
-        public string Lastname { get; set; }
         #endregion
     }
 }

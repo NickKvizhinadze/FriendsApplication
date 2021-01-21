@@ -7,11 +7,10 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
-using DotNetHelpers.Models;
-using DotNetHelpers.Logger;
 using DotNetHelpers.MvcCore;
 using DotNetHelpers.MvcCore.Attributes;
 using Friends.Localization;
@@ -26,7 +25,7 @@ namespace Friends.Api.Users
         #region Fields
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly ILogService _logger;
+        private readonly ILogger<AccountController> _logger;
         private readonly AppSettings _settings;
         #endregion
 
@@ -34,12 +33,12 @@ namespace Friends.Api.Users
         public AccountController(
            UserManager<IdentityUser> userManager,
            SignInManager<IdentityUser> signInManager,
-           ILogService logService,
+           ILogger<AccountController> logger,
            IOptionsSnapshot<AppSettings> options)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _logger = logService;
+            _logger = logger;
             _settings = options.Value;
         }
         #endregion
@@ -72,7 +71,10 @@ namespace Friends.Api.Users
         [ModelState]
         public async Task<IActionResult> Register([FromBody] RegisterRequest model)
         {
-            var user = new IdentityUser(model.Email);
+            var user = new IdentityUser(model.Email)
+            {
+                Email = model.Email
+            };
             var registerResult = await _userManager.CreateAsync(user, model.Password);
             if (registerResult.Succeeded)
                 return Ok();
