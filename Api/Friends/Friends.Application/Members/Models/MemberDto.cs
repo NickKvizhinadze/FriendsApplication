@@ -11,7 +11,7 @@ namespace Friends.Application.Members.Models
             Name = string.Empty;
             Website = string.Empty;
             Friends = new List<string>();
-            Headings = new List<KeyValuePair<string, string>>();
+            Headings = new List<HeadingDto>();
         }
         #endregion
 
@@ -20,7 +20,7 @@ namespace Friends.Application.Members.Models
         public string Name { get; set; }
         public string Website { get; set; }
         public List<string> Friends { get; set; }
-        public List<KeyValuePair<string, string>> Headings { get; set; }
+        public List<HeadingDto> Headings { get; set; }
         #endregion
     }
 }

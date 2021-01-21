@@ -43,14 +43,23 @@ namespace Friends.Persistence.Members
             return TableNoTracking.AnyAsync(f => f.Name == name);
         }
 
-        public Task<List<Member>> GetExpertsAsync(string id, string heading)
+        public async Task<List<MemberFriend>> GetExpertsAsync(string id, List<string> friendIds, string heading)
         {
-            return GetWithIncludes(false)
-                .Where(m => m.Friends.All(f => f.Friend2Id != id) && m.Headings.Any(h => h.Value == heading))
+            var friendsOfFriends = await TableNoTracking
+                .Include(c => c.Headings)
+                .Include(c => c.Friends).ThenInclude(f => f.Friend)
+                .Include(c => c.Friends).ThenInclude(f => f.Friend2).ThenInclude(f => f!.Headings)
+                .Where(f => f.Id != id && friendIds.Contains(f.Id))
+                .SelectMany(f => f.Friends!)
+                .Where(f => f.Friend2Id != id)
                 .ToListAsync();
+
+            return friendsOfFriends
+                .Where(f => f!.Friend2!.Headings.Any(h => h.Value == heading))
+                .ToList();
         }
 
-        public Task<Dictionary<string, string>> GetAsDictionaryAsync(string searchValue) 
+        public Task<Dictionary<string, string>> GetAsDictionaryAsync(string searchValue)
             => TableNoTracking
                 .Where(m => string.IsNullOrWhiteSpace(searchValue) || m.Name.ToLower().Contains(searchValue.ToLower()))
                 .ToDictionaryAsync(m => m.Id, m => m.Name);

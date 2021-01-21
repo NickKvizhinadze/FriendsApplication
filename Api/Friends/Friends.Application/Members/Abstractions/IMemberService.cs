@@ -12,7 +12,7 @@ namespace Friends.Application.Members.Abstractions
         Task<Result<MemberDto>> CreateAsync(MemberCreateRequest request);
         Task<Result> AddFriendAsync(string memberId, AddFriendRequest request);
         Task<MemberDto> GetAsync(string id);
-        Task<List<MemberDto>> GetExpertsAsync(string id, string heading);
+        Task<ExpertsDto> GetExpertsAsync(string id, string headingId);
         Task<List<Dropdown<string>>> GetAsDropdownListAsync(string searchValue);
     }
 }

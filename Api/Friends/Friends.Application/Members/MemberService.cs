@@ -46,10 +46,22 @@ namespace Friends.Application.Members
             return _mapper.Map<MemberDto>(member);
         }
 
-        public async Task<List<MemberDto>> GetExpertsAsync(string id, string heading)
+        public async Task<ExpertsDto> GetExpertsAsync(string id, string headingId)
         {
-            var member = await _uow.Members.GetExpertsAsync(id, heading);
-            return _mapper.Map<List<MemberDto>>(member);
+            var member = await _uow.Members.GetAsync(id);
+            var heading = member.Headings.First(h => h.Id == headingId).Value;
+
+            var members = await _uow.Members.GetExpertsAsync(id,
+                member.Friends.Select(f => f.Friend2Id).ToList(),
+                heading);
+            var experts = members.Select(e => new ExpertDto
+            {
+                FriendId = e.Friend!.Id,
+                FriendName = e.Friend.Name,
+                ExpertId = e.Friend2!.Id,
+                ExpertName = e.Friend2.Name,
+            }).ToList();
+            return new ExpertsDto(id, member.Name, headingId, heading, experts);
         }
 
         public async Task<Result<MemberDto>> CreateAsync(MemberCreateRequest request)
