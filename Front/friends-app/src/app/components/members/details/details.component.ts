@@ -47,10 +47,11 @@ export class MemberDetailsComponent implements OnInit {
       ),
     )
 
-  addFriend = () => {
+  addFriend = (event: Event) => {
+    event.preventDefault();
     this.service.addFriend(this.member.id, { friendId: this.friend.value })
       .subscribe(
-        member => this.member = member,
+        () => (window.location.reload()),
         error => this.errors = error.error
       )
   }
