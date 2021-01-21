@@ -1,62 +1,74 @@
-<div class="container-fluid row">
-  <form
-    class="form-horizontal col-lg-2 col-md-4 col-sm-6 my-2"
-    (ngSubmit)="onSubmit($event)"
-  >
-    <div class="input-group">
-      <input
-        class="form-control"
-        name="searchValue"
-        [(ngModel)]="searchValue"
-        placeholder="Search"
-      />
-      <div class="input-group-append">
-        <button class="input-group-text btn-search" id="search" type="submit">
-          <fa-icon [icon]="faSearch"></fa-icon>
-        </button>
-
-        <button
-          type="button"
-          class="input-group-text btn-search btn-flat"
-          (click)="clearFilter()"
-        >
-          <fa-icon [icon]="faEraser"></fa-icon>
-        </button>
-      </div>
+<div class="container-fluid">
+  <div class="row my-2">
+    <div class="col-2">
+      <a routerLink="/members/create" class="btn btn-primary"
+        >Create <fa-icon [icon]="faPlus"></fa-icon
+      ></a>
     </div>
-  </form>
-  <table class="table table-striped">
-    <thead>
-      <tr id="listHeaders">
-        <th>Name</th>
-        <th>Website</th>
-        <th>Friends count</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let member of members">
-        <td>{{ member.name }}</td>
-        <td>{{ member.website }}</td>
-        <td>{{ member.friends.length }}</td>
-        <td class="pull-right">
-          <a
-            routerLink="/home"
-            class="btn btn-primary btn-sm"
-            tooltip-placement="top"
-            uib-tooltip="details"
-          >
-            <fa-icon [icon]="faEye"></fa-icon>
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <form class="form-horizontal col-10" (ngSubmit)="onSubmit($event)">
+      <div class="float-right">
+        <div class="input-group">
+          <input
+            class="form-control"
+            name="searchValue"
+            [(ngModel)]="searchValue"
+            placeholder="Search"
+          />
+          <div class="input-group-append">
+            <button
+              class="input-group-text btn-search"
+              id="search"
+              type="submit"
+            >
+              <fa-icon [icon]="faSearch"></fa-icon>
+            </button>
 
-  <br />
+            <button
+              type="button"
+              class="input-group-text btn-search btn-flat"
+              (click)="clearFilter()"
+            >
+              <fa-icon [icon]="faEraser"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <table class="table table-striped">
+      <thead>
+        <tr id="listHeaders">
+          <th>Name</th>
+          <th>Website</th>
+          <th>Friends count</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let member of members">
+          <td>{{ member.name }}</td>
+          <td>{{ member.website }}</td>
+          <td>{{ member.friends.length }}</td>
+          <td class="pull-right">
+            <a
+              routerLink="/home"
+              class="btn btn-primary btn-sm"
+              tooltip-placement="top"
+              uib-tooltip="details"
+            >
+              <fa-icon [icon]="faEye"></fa-icon>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-  <app-paging
-    (handlePageChange)="onPageChange($event)"
-    [paging]="this.paging"
-  ></app-paging>
+    <br />
+
+    <app-paging
+      (handlePageChange)="onPageChange($event)"
+      [paging]="this.paging"
+    ></app-paging>
+  </div>
 </div>

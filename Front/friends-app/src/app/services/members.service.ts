@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from './../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MembersList } from './../../models/members/MembersList';
+import { MemberCreateRequest } from './../../models/members/MemberCreateRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,9 @@ export class MembersService {
     }
 
     return this.http.get<MembersList>(this.apiBaseUrl + queryString.slice(0, -1));
+  }
+
+  create(request: MemberCreateRequest): Observable<any> {
+    return this.http.post<any>(this.apiBaseUrl, request);
   }
 }

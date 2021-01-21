@@ -1,0 +1,80 @@
+<div class="row mt-3">
+  <div class="offset-3 col-6">
+    <div class="card p-2">
+      <div class="card-body">
+        <h5 class="card-title">Create member</h5>
+      </div>
+      <form
+        method="post"
+        class="p-1"
+        style="height: 100%; overflow: hidden"
+        [formGroup]="memberForm"
+        (ngSubmit)="memberForm.valid && onSubmit($event)"
+      >
+        <div *ngIf="getErrorKeys().length > 0" class="alert">
+          <div *ngFor="let key of getErrorKeys()" class="text-danger">
+            {{ errors[key] }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            [formControl]="name"
+            placeholder="Enter name"
+            required
+            minlength="4"
+          />
+          <small
+            class="form-text text-danger"
+            *ngIf="name && name.invalid && (name.dirty || name.touched)"
+          >
+            <div *ngIf="name && name.errors && name.errors.required">
+              Name is required.
+            </div>
+            <div *ngIf="name && name.errors && name.errors.minlength">
+              Name must be at least 4 characters long.
+            </div>
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="website">Website</label>
+          <input
+            type="text"
+            class="form-control"
+            id="website"
+            name="website"
+            [formControl]="website"
+            placeholder="Enter website"
+            required
+          />
+          <small
+            class="form-text text-danger"
+            *ngIf="
+              website && website.invalid && (website.dirty || website.touched)
+            "
+          >
+            <div *ngIf="website && website.errors && website.errors.required">
+              Website is required.
+            </div>
+          </small>
+        </div>
+        <div class="form-group form-buttons">
+          <div class="float-right">
+            <button
+              type="submit"
+              [disabled]="!memberForm.valid"
+              class="btn btn-primary"
+            >
+              Create
+            </button>
+            <a asp-action="Index" class="btn btn-warning">Back to list</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

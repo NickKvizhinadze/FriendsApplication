@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { faEye, faSearch, faEraser } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faSearch, faEraser, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import { MembersService } from './../../../services/members.service';
 
@@ -19,6 +19,7 @@ export class MembersComponent implements OnInit {
   searchValue: string;
   faSearch = faSearch;
   faEraser = faEraser;
+  faPlus = faPlus;
 
   constructor(private service: MembersService) { }
 

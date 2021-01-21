@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { MembersComponent } from './components/members/index/index.component';
+import { CreateMemberComponent } from './components/members/create/create.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
     path: 'members',
     pathMatch: 'full',
     component: MembersComponent
+  },
+  {
+    path: 'members/create',
+    pathMatch: 'full',
+    component: CreateMemberComponent
   }
 ];
 
