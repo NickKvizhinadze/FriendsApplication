@@ -84,7 +84,7 @@ namespace Friends.Application.Members
             }
         }
 
-        public async Task<Result<MemberDto>> AddFriendAsync(string memberId, AddFriendRequest request)
+        public async Task<Result> AddFriendAsync(string memberId, AddFriendRequest request)
         {
             try
             {
@@ -104,7 +104,7 @@ namespace Friends.Application.Members
                 };
                 _uow.MemberFriends.AddRange(memberFriend);
                 await _uow.SaveAsync();
-                return Result.Success(_mapper.Map<MemberDto>(member));
+                return Result.Success();
             }
             catch (Exception ex)
             {
