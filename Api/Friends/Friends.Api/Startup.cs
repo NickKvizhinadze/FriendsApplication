@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Friends.Api.Middlewares;
 using Friends.Application.Extentsions;
 using Friends.Persistence.Extentsions;
+using Friends.Api.Extensions;
 
 namespace Friends.Api
 {
@@ -26,14 +27,19 @@ namespace Friends.Api
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped(_ => new ApplicationDbContext(Configuration.GetConnectionString("DefaultConnection")));
+            var appSettings = Configuration.GetSection(nameof(AppSettings)).Get<AppSettings>();
+            var connectionStrings = Configuration.GetSection(nameof(ConnectionStrings)).Get<ConnectionStrings>();
+
+            services.AddScoped(_ => new ApplicationDbContext(connectionStrings.DefaultConnection));
+            services.AddIdentity();
+            services.AddJwtAuthentication(appSettings.Jwt);
+
             services.AddCors(o => o.AddPolicy("CorsPolicy",
                 bullder =>
                 {
                     bullder.AllowAnyMethod()
                     .AllowAnyHeader()
-                    .AllowAnyOrigin()
-                    .AllowCredentials();
+                    .AllowAnyOrigin();
                 }));
 
             services.Configure<AppSettings>(Configuration.GetSection(nameof(AppSettings)));
@@ -65,8 +71,10 @@ namespace Friends.Api
 
             app.UseGlobalExceptionHandler();
 
+            app.UseCors("CorsPolicy");
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseSwagger();
 
