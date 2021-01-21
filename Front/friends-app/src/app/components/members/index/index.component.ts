@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { faEye, faSearch, faEraser } from '@fortawesome/free-solid-svg-icons';
 
 import { MembersService } from './../../../services/members.service';
 
@@ -12,22 +13,38 @@ import { MembersList } from './../../../../models/members/MembersList';
   templateUrl: './index.component.html'
 })
 export class MembersComponent implements OnInit {
+  faEye = faEye;
   members: Member[];
   paging: Paging = new Paging();
   searchValue: string;
+  faSearch = faSearch;
+  faEraser = faEraser;
 
   constructor(private service: MembersService) { }
 
   ngOnInit(): void {
-    this.getPages(this.service.getAll());
+    this.getMembers(this.service.getAll());
   }
 
-  getPages(memberListObservable: Observable<MembersList>) {
+
+  onSubmit(event: Event) {
+    event.preventDefault;
+    this.getMembers(this.service.getAll(this.searchValue, 1, this.paging.perPage))
+  }
+
+  clearFilter() {
+    this.searchValue = "";
+    this.getMembers(this.service.getAll());
+  }
+
+  onPageChange(page: number) {
+    this.getMembers(this.service.getAll(undefined, page, this.paging.perPage));
+  }
+
+  getMembers(memberListObservable: Observable<MembersList>) {
     memberListObservable.subscribe(list => {
       this.members = list.items
       this.paging = list.paging;
-      console.log(list.items);
-      console.log(list.paging);
     });
   }
 

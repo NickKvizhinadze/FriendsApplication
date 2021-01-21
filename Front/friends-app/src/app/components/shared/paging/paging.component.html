@@ -1,0 +1,55 @@
+<div class="row" id="paging" *ngIf="paging.pageCount > 1">
+  <div class="col-lg-11 col-md-10 col-sm-8">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item" [class.disabled]="paging.currentPage === 1">
+          <a class="page-link" href="#" (click)="onChangePage($event, 1)">
+            <fa-icon [icon]="faFastBackward"></fa-icon>
+          </a>
+        </li>
+        <li class="page-item" [class.disabled]="paging.currentPage === 1">
+          <a
+            class="page-link"
+            href="#"
+            (click)="onChangePage($event, paging.currentPage - 1)"
+          >
+            <fa-icon [icon]="faStepBackward"></fa-icon>
+          </a>
+        </li>
+        <li
+          class="page-item"
+          *ngFor="let i of range(paging.pageCount)"
+          [class.active]="paging.currentPage === i + 1"
+        >
+          <a class="page-link" href="#" (click)="onChangePage($event, i + 1)">
+            {{ i + 1 }}
+          </a>
+        </li>
+        <li
+          class="page-item"
+          [class.disabled]="paging.currentPage === paging.pageCount"
+        >
+          <a
+            class="page-link"
+            href="#"
+            (click)="onChangePage($event, paging.currentPage + 1)"
+          >
+            <fa-icon [icon]="faStepForward"></fa-icon>
+          </a>
+        </li>
+        <li
+          class="page-item"
+          [class.disabled]="paging.currentPage === paging.pageCount"
+        >
+          <a
+            class="page-link"
+            href="#"
+            (click)="onChangePage($event, paging.pageCount)"
+          >
+            <fa-icon [icon]="faFastForward"></fa-icon>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
