@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MembersComponent } from './components/members/index/index.component';
 import { CreateMemberComponent } from './components/members/create/create.component';
 import { MemberDetailsComponent } from './components/members/details/details.component';
+import { MemberExpertsComponent } from './components/members/experts/experts.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,11 @@ const routes: Routes = [
     path: 'members/details/:id',
     pathMatch: 'full',
     component: MemberDetailsComponent
+  },
+  {
+    path: 'members/experts/:id',
+    pathMatch: 'full',
+    component: MemberExpertsComponent
   }
 ];
 

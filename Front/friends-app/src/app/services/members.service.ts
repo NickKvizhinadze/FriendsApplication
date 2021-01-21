@@ -9,12 +9,13 @@ import { environment } from './../../environments/environment';
 import { MembersList } from './../../models/members/MembersList';
 import { MemberCreateRequest } from './../../models/members/MemberCreateRequest';
 import { AddFriendRequest } from './../../models/members/AddFriendRequest';
+import { ExpertsDto } from './../../models/members/ExpertsDto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MembersService {
-  private apiBaseUrl = environment.apiBaseUrl + 'members';
+  private apiBaseUrl = environment.apiBaseUrl + 'Members';
   constructor(private http: HttpClient) {
   }
 
@@ -42,16 +43,20 @@ export class MembersService {
     return this.http.get<Member>(this.apiBaseUrl + "/" + id);
   }
 
-  create(request: MemberCreateRequest): Observable<Member> {
-    return this.http.post<Member>(this.apiBaseUrl, request);
-  }
-
   searchFriends(searchValue: string): Observable<Dropdown[]> {
     if (searchValue === '') {
       return of([]);
     }
     return this.http.get<Dropdown[]>(this.apiBaseUrl + '/GetDropdownList?searchValue=' + searchValue)
       .pipe(map(response => response));
+  }
+
+  getExperts(id: string, heading: string): Observable<ExpertsDto> {
+    return this.http.get<ExpertsDto>(`${this.apiBaseUrl}/${id}/GetExperts?headingId=${heading}`);
+  }
+
+  create(request: MemberCreateRequest): Observable<Member> {
+    return this.http.post<Member>(this.apiBaseUrl, request);
   }
 
   addFriend(id: string, request: AddFriendRequest): Observable<Member> {

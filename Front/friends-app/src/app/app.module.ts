@@ -12,6 +12,7 @@ import { MembersComponent } from './components/members/index/index.component';
 import { PagingComponent } from './components/shared/paging/paging.component';
 import { CreateMemberComponent } from './components/members/create/create.component';
 import { MemberDetailsComponent } from './components/members/details/details.component';
+import { MemberExpertsComponent } from './components/members/experts/experts.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MemberDetailsComponent } from './components/members/details/details.com
     MembersComponent,
     PagingComponent,
     CreateMemberComponent,
-    MemberDetailsComponent
+    MemberDetailsComponent,
+    MemberExpertsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,26 @@
+<table class="table table-striped">
+  <thead>
+    <tr id="listHeaders">
+      <th>Path</th>
+      <th>heading</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let member of result.experts">
+      <td>
+        <a routerLink="/members/details/{{ result.memberId }}">
+          {{ result.memberName }}
+        </a>
+        ->
+        <a routerLink="/members/details/{{ member.friendId }}">
+          {{ member.friendName }}
+        </a>
+        ->
+        <a routerLink="/members/details/{{ member.expertId }}">
+          {{ member.expertName }}
+        </a>
+      </td>
+      <td>{{ result.headingValue }}</td>
+    </tr>
+  </tbody>
+</table>
