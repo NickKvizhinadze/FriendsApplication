@@ -11,5 +11,6 @@ namespace Friends.Application.Members.Abstractions
         Task<(List<Member> users, int totalCount)> GetAllAsync(BaseAdditional<BaseFilter> additional);
         Task<Member> GetAsFriendAsync(string id);
         Task<bool> ExistsAsync(string name);
+        Task<List<Member>> GetExpertsAsync(string id, string heading);
     }
 }

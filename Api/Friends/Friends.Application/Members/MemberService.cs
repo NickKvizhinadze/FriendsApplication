@@ -40,6 +40,18 @@ namespace Friends.Application.Members
             return new PagedList<MemberDto>(memberDtos, GetPagingInfo(additional.Paging, totalCount), additional.Sorting);
         }
 
+        public async Task<MemberDto> GetAsync(string id)
+        {
+            var member = await _uow.Members.GetAsync(id);
+            return _mapper.Map<MemberDto>(member);
+        }
+
+        public async Task<List<MemberDto>> GetExpertsAsync(string id, string heading)
+        {
+            var member = await _uow.Members.GetExpertsAsync(id, heading);
+            return _mapper.Map<List<MemberDto>>(member);
+        }
+
         public async Task<Result<MemberDto>> CreateAsync(MemberCreateRequest request)
         {
             try

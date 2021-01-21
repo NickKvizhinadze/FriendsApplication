@@ -42,6 +42,13 @@ namespace Friends.Persistence.Members
         {
             return TableNoTracking.AnyAsync(f => f.Name == name);
         }
+
+        public Task<List<Member>> GetExpertsAsync(string id, string heading)
+        {
+            return GetWithIncludes(false)
+                .Where(m => m.Friends.All(f => f.Friend2Id != id) && m.Headings.Any(h => h.Value == heading))
+                .ToListAsync();
+        }
         #endregion
 
         #region Overrides

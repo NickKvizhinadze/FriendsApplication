@@ -1,15 +1,15 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using DotNetHelpers.Models;
 using DotNetHelpers.MvcCore;
 using Friends.Application.Common;
-using Friends.Application.Members.Abstractions;
 using Friends.Application.Members.Models;
-using System;
-using System.Net.Http;
+using Friends.Application.Members.Abstractions;
 
 namespace Friends.Api.Members
 {
+    [Authorize]
     public class MembersController: ApiBaseController
     {
         #region Fields
@@ -31,8 +31,21 @@ namespace Friends.Api.Members
             return Ok(members);
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<MemberDto>> GetAsync(string id)
+        {
+            var result = await _service.GetAsync(id);
+            return Ok(result);
+        }
+
+        [HttpGet("{id}/GetExperts")]
+        public async Task<ActionResult<MemberDto>> GetExpertsAsync(string id, string heading)
+        {
+            var result = await _service.GetExpertsAsync(id, heading);
+            return Ok(result);
+        }
+
         [HttpPost]
-        //TODO: add authorize attribute
         public async Task<ActionResult<MemberDto>> CreateAsync([FromBody] MemberCreateRequest request)
         {
             var result = await _service.CreateAsync(request);
@@ -40,7 +53,6 @@ namespace Friends.Api.Members
         }
 
         [HttpPost("{id}/AddFriend")]
-        //TODO: add authorize attribute
         public async Task<ActionResult<MemberDto>> AddFriendAsync(string id, [FromBody] AddFriendRequest request)
         {
             var members = await _service.AddFriendAsync(id, request);
