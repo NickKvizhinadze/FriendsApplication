@@ -54,8 +54,10 @@ namespace Friends.Persistence.Members
                 .Where(f => f.Friend2Id != id)
                 .ToListAsync();
 
-            return friendsOfFriends
+            return = friendsOfFriends
                 .Where(f => f!.Friend2!.Headings.Any(h => h.Value == heading))
+                .GroupBy(f => f.FriendId)
+                .Select(f => f.First())
                 .ToList();
         }
 
