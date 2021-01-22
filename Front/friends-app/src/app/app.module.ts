@@ -17,6 +17,7 @@ import { MemberExpertsComponent } from './components/members/experts/experts.com
 import { SigninComponent } from './components/accounts/signin/signin.component';
 import { SignupComponent } from './components/accounts/signup/signup.component';
 import { LogoutComponent } from './components/accounts/logout/logout.component';
+import { LoaderComponent } from './components/shared/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LogoutComponent } from './components/accounts/logout/logout.component';
     MemberExpertsComponent,
     SigninComponent,
     SignupComponent,
-    LogoutComponent
+    LogoutComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

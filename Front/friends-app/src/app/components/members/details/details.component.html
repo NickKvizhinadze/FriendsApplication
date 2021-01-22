@@ -61,10 +61,15 @@
           <div class="form-group">
             <button
               class="btn btn-success float-right"
-              [disabled]="!friend"
+              [disabled]="!friend || addFriendLoading"
               (click)="addFriend($event)"
             >
-              Add as a friend
+              <fa-icon
+                *ngIf="addFriendLoading"
+                [icon]="faSpinner"
+                [spin]="true"
+              ></fa-icon>
+              {{ !addFriendLoading ? "Add as a friend" : "" }}
             </button>
           </div>
         </div>

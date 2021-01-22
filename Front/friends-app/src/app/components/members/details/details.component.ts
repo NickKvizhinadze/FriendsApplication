@@ -14,6 +14,7 @@ export class MemberDetailsComponent implements OnInit {
   member: Member = new Member();
   loadingFriends: boolean = false;
   loadingFaild: boolean = false;
+  addFriendLoading: boolean = false;
   friend: Dropdown;
   errors: any = {};
   faSpinner = faSpinner;
@@ -49,10 +50,17 @@ export class MemberDetailsComponent implements OnInit {
 
   addFriend = (event: Event) => {
     event.preventDefault();
+    this.addFriendLoading = true;
     this.service.addFriend(this.member.id, { friendId: this.friend.value })
       .subscribe(
-        () => (window.location.reload()),
-        error => this.errors = error.error
+        () => {
+          this.addFriendLoading = false;
+          window.location.reload()
+        },
+        error => {
+          this.addFriendLoading = false;
+          this.errors = error.error;
+        }
       )
   }
 

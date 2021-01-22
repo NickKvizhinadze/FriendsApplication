@@ -13,10 +13,11 @@ import { MembersList } from './../../../../models/members/MembersList';
   templateUrl: './index.component.html'
 })
 export class MembersComponent implements OnInit {
-  faEye = faEye;
+  loading: boolean = true;
   members: Member[];
   paging: Paging = new Paging();
   searchValue: string;
+  faEye = faEye;
   faSearch = faSearch;
   faEraser = faEraser;
   faPlus = faPlus;
@@ -43,9 +44,12 @@ export class MembersComponent implements OnInit {
   }
 
   getMembers(memberListObservable: Observable<MembersList>) {
+    if (!this.loading)
+      this.loading = true;
     memberListObservable.subscribe(list => {
       this.members = list.items
       this.paging = list.paging;
+      this.loading = false;
     });
   }
 

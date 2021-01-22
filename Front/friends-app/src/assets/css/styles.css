@@ -1,0 +1,8 @@
+.btn-primary {
+    min-width: 75px;
+}
+
+.page-loader {
+    margin: 2rem auto;
+    color: #007bff;
+}

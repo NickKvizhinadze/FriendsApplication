@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { AccountService } from './../../../services/account.service';
 import { SignUpRequest } from './../../../../models/accounts/SignUpRequest';
 
@@ -9,9 +10,11 @@ import { SignUpRequest } from './../../../../models/accounts/SignUpRequest';
   templateUrl: './signup.component.html'
 })
 export class SignupComponent implements OnInit {
+  loading: boolean = false;
   member: SignUpRequest = new SignUpRequest();
   signUpForm: FormGroup;
   errors: any = {};
+  faSpinner = faSpinner;
 
   constructor(private service: AccountService, private router: Router) { }
 
@@ -35,16 +38,21 @@ export class SignupComponent implements OnInit {
 
   onSubmit(event: Event) {
     event.preventDefault;
+    this.loading = true;
     this.errors = {};
-    if (!this.signUpForm.valid)
+    if (!this.signUpForm.valid) {
+      this.loading = false;
       return;
+    }
 
 
     this.service.register(this.signUpForm.value).
       subscribe(() => {
         this.router.navigate(['/signin']);
+        this.loading = false;
       }, error => {
         this.errors = error.error;
+        this.loading = false;
       });
   }
 

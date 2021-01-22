@@ -1,4 +1,5 @@
-<table class="table table-striped">
+<app-loader *ngIf="loading"></app-loader>
+<table class="table table-striped" *ngIf="!loading">
   <thead>
     <tr id="listHeaders">
       <th>Path</th>

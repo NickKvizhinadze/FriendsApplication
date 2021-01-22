@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest } from 'rxjs';
-import { map, subscribeOn } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { MembersService } from 'src/app/services/members.service';
 import { ExpertsDto } from './../../../../models/members/ExpertsDto';
 
@@ -10,6 +10,7 @@ import { ExpertsDto } from './../../../../models/members/ExpertsDto';
   templateUrl: './experts.component.html'
 })
 export class MemberExpertsComponent implements OnInit {
+  loading: boolean = true;
   result: ExpertsDto = new ExpertsDto();
   memberName: string;
   constructor(private service: MembersService, private route: ActivatedRoute) { }
@@ -21,6 +22,7 @@ export class MemberExpertsComponent implements OnInit {
         this.memberName = result.memberName;
         this.service.getExperts(result.id, result.heading).subscribe(data => {
           this.result = data;
+          this.loading = false;
         })
       });
 
