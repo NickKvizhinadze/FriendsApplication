@@ -1,5 +1,6 @@
 <app-loader *ngIf="loading"></app-loader>
-<div class="container-fluid">
+<app-error *ngIf="!loading && error" [error]="error"></app-error>
+<div class="container-fluid" *ngIf="!loading && !error">
   <div class="row my-2">
     <div class="col-2">
       <a routerLink="/members/create" class="btn btn-primary"

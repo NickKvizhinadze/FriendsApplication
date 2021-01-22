@@ -14,6 +14,7 @@ import { MembersList } from './../../../../models/members/MembersList';
 })
 export class MembersComponent implements OnInit {
   loading: boolean = true;
+  error: string;
   members: Member[];
   paging: Paging = new Paging();
   searchValue: string;
@@ -49,6 +50,9 @@ export class MembersComponent implements OnInit {
     memberListObservable.subscribe(list => {
       this.members = list.items
       this.paging = list.paging;
+      this.loading = false;
+    }, error => {
+      this.error = "Could not load members";
       this.loading = false;
     });
   }

@@ -11,6 +11,8 @@ import { Dropdown } from './../../../../models/base/Dropdown';
   templateUrl: './details.component.html'
 })
 export class MemberDetailsComponent implements OnInit {
+  loading: boolean = true;
+  loadingError: string;
   member: Member = new Member();
   loadingFriends: boolean = false;
   loadingFaild: boolean = false;
@@ -25,7 +27,16 @@ export class MemberDetailsComponent implements OnInit {
     this.route
       .params
       .subscribe(params => {
-        this.service.get(params.id).subscribe(member => this.member = member);
+        this.service.get(params.id)
+          .subscribe(
+            member => {
+              this.loading = false;
+              this.member = member;
+            },
+            error => {
+              this.loadingError = "Could not load member";
+              this.loading = false;
+            });
       });
   }
 

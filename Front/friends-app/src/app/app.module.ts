@@ -18,6 +18,7 @@ import { SigninComponent } from './components/accounts/signin/signin.component';
 import { SignupComponent } from './components/accounts/signup/signup.component';
 import { LogoutComponent } from './components/accounts/logout/logout.component';
 import { LoaderComponent } from './components/shared/loader/loader.component';
+import { ErrorComponent } from './components/shared/error/error.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LoaderComponent } from './components/shared/loader/loader.component';
     SigninComponent,
     SignupComponent,
     LogoutComponent,
-    LoaderComponent
+    LoaderComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
