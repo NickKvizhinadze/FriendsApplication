@@ -33,7 +33,16 @@
             Members
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="service.currentUser">
+          <a
+            class="nav-link"
+            routerLink="/logout"
+            [routerLinkActive]="['active']"
+          >
+            <fa-icon [icon]="faSignInAlt"></fa-icon> Log out
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!service.currentUser">
           <a
             class="nav-link"
             routerLink="/signin"
@@ -42,7 +51,7 @@
             <fa-icon [icon]="faSignInAlt"></fa-icon> Sign in
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!service.currentUser">
           <a
             class="nav-link"
             routerLink="/signup"

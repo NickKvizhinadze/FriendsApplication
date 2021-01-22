@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Friends.Api.Members
 {
-    //[Authorize]
+    [Authorize]
     public class MembersController : ApiBaseController
     {
         #region Fields

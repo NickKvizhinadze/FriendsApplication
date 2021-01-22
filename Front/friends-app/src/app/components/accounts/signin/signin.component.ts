@@ -35,7 +35,7 @@ export class SigninComponent implements OnInit {
       return;
 
 
-    this.service.authorize(this.signUpForm.value).
+    this.service.authorize({ ...this.signUpForm.value, rememberMe: true }).
       subscribe(() => {
         this.router.navigate(['/home']);
       }, error => {
