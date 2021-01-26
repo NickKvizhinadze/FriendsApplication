@@ -38,7 +38,6 @@ export class SigninComponent implements OnInit {
 
     this.service.authorize({ ...this.signUpForm.value, rememberMe: true }).
       subscribe(() => {
-        debugger
         this.router.navigate(['/home']);
         this.loading = false;
       }, error => {
@@ -46,16 +45,6 @@ export class SigninComponent implements OnInit {
         this.loading = false;
       });
   }
-
-  getErrorKeys(): string[] {
-    const keys: string[] = [];
-    for (const key in this.errors) {
-      if (Object.prototype.hasOwnProperty.call(this.errors, key))
-        keys.push(key);
-    }
-    return keys;
-  }
-
 
   get email() { return this.signUpForm.get('email'); }
   get password() { return this.signUpForm.get('password'); }

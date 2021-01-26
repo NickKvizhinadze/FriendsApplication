@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using DotNetHelpers.Models;
 using DotNetHelpers.MvcCore;
+using DotNetHelpers.MvcCore.Attributes;
 using Friends.Application.Common;
 using Friends.Application.Members.Abstractions;
 using Friends.Application.Members.Models;
@@ -47,6 +48,7 @@ namespace Friends.Api.Members
         }
 
         [HttpPost]
+        [ModelState]
         public async Task<ActionResult<MemberDto>> CreateAsync([FromBody] MemberCreateRequest request)
         {
             var result = await _service.CreateAsync(request);
@@ -54,6 +56,7 @@ namespace Friends.Api.Members
         }
 
         [HttpPost("{id}/AddFriend")]
+        [ModelState]
         public async Task<IActionResult> AddFriendAsync(string id, [FromBody] AddFriendRequest request)
         {
             var members = await _service.AddFriendAsync(id, request);

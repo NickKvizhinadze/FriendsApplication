@@ -35,11 +35,6 @@ export class CreateMemberComponent implements OnInit {
     event.preventDefault;
     this.loading = true;
     this.errors = {};
-    if (!this.memberForm.valid) {
-      this.loading = false;
-      return;
-    }
-
 
     this.service.create(this.memberForm.value).
       subscribe(() => {
@@ -49,15 +44,6 @@ export class CreateMemberComponent implements OnInit {
         this.loading = false;
         this.errors = error.error;
       });
-  }
-
-  getErrorKeys(): string[] {
-    const keys: string[] = [];
-    for (const key in this.errors) {
-      if (Object.prototype.hasOwnProperty.call(this.errors, key))
-        keys.push(key);
-    }
-    return keys;
   }
 
   get name() { return this.memberForm.get('name'); }

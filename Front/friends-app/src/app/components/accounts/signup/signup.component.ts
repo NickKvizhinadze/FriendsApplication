@@ -40,11 +40,6 @@ export class SignupComponent implements OnInit {
     event.preventDefault;
     this.loading = true;
     this.errors = {};
-    if (!this.signUpForm.valid) {
-      this.loading = false;
-      return;
-    }
-
 
     this.service.register(this.signUpForm.value).
       subscribe(() => {
@@ -52,19 +47,10 @@ export class SignupComponent implements OnInit {
         this.loading = false;
       }, error => {
         this.errors = error.error;
+        console.log(this.errors);
         this.loading = false;
       });
   }
-
-  getErrorKeys(): string[] {
-    const keys: string[] = [];
-    for (const key in this.errors) {
-      if (Object.prototype.hasOwnProperty.call(this.errors, key))
-        keys.push(key);
-    }
-    return keys;
-  }
-
 
   get email() { return this.signUpForm.get('email'); }
   get password() { return this.signUpForm.get('password'); }

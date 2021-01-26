@@ -11,9 +11,9 @@
         [formGroup]="memberForm"
         (ngSubmit)="memberForm.valid && onSubmit($event)"
       >
-        <div *ngIf="getErrorKeys().length > 0" class="alert">
-          <div *ngFor="let key of getErrorKeys()" class="text-danger">
-            {{ errors[key] }}
+        <div *ngIf="errors && errors.Error" class="alert">
+          <div *ngFor="let error of errors.Error" class="text-danger">
+            {{ error }}
           </div>
         </div>
         <div class="form-group">
@@ -28,6 +28,9 @@
             required
             minlength="4"
           />
+          <small *ngIf="errors && errors.Name" class="form-text text-danger">
+            <p *ngFor="let error of errors.Name">{{ error }}</p>
+          </small>
           <small
             class="form-text text-danger"
             *ngIf="name && name.invalid && (name.dirty || name.touched)"
@@ -51,6 +54,9 @@
             placeholder="Enter website"
             required
           />
+          <small *ngIf="errors && errors.Website" class="form-text text-danger">
+            <p *ngFor="let error of errors.Website">{{ error }}</p>
+          </small>
           <small
             class="form-text text-danger"
             *ngIf="
@@ -66,7 +72,7 @@
           <div class="float-right">
             <button
               type="submit"
-              [disabled]="!memberForm.valid"
+              [disabled]="!memberForm.valid || loading"
               class="btn btn-primary"
             >
               Create
