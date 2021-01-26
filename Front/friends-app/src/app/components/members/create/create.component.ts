@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { ToastrService } from 'ngx-toastr';
 import { MembersService } from 'src/app/services/members.service';
 import { MemberCreateRequest } from './../../../../models/members/MemberCreateRequest';
 
@@ -16,7 +17,7 @@ export class CreateMemberComponent implements OnInit {
   errors: any = {};
   faSpinner = faSpinner;
 
-  constructor(private service: MembersService, private router: Router) { }
+  constructor(private service: MembersService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.memberForm = new FormGroup({
@@ -40,6 +41,7 @@ export class CreateMemberComponent implements OnInit {
       subscribe(() => {
         this.loading = false;
         this.router.navigate(['/members']);
+        this.toastr.success('Member Added');
       }, error => {
         this.loading = false;
         this.errors = error.error;

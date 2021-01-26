@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, catchError, tap, switchMap } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { Member } from './../../../../models/members/Member';
 import { MembersService } from './../../../services/members.service';
@@ -17,27 +18,31 @@ export class MemberDetailsComponent implements OnInit {
   loadingFriends: boolean = false;
   loadingFaild: boolean = false;
   addFriendLoading: boolean = false;
-  friend: Dropdown;
+  friend: Dropdown | undefined;
   errors: any = {};
   faSpinner = faSpinner;
 
-  constructor(private service: MembersService, private route: ActivatedRoute) { }
+  constructor(private service: MembersService, private route: ActivatedRoute, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.route
       .params
       .subscribe(params => {
-        this.service.get(params.id)
-          .subscribe(
-            member => {
-              this.loading = false;
-              this.member = member;
-            },
-            error => {
-              this.loadingError = "Could not load member";
-              this.loading = false;
-            });
-      });
+        this.getMember(params.id);
+      })
+  }
+
+  getMember = (id: string) => {
+    this.service.get(id)
+      .subscribe(
+        member => {
+          this.loading = false;
+          this.member = member;
+        },
+        error => {
+          this.loadingError = "Could not load member";
+          this.loading = false;
+        });
   }
 
   search = (text$: Observable<string>) =>
@@ -62,11 +67,17 @@ export class MemberDetailsComponent implements OnInit {
   addFriend = (event: Event) => {
     event.preventDefault();
     this.addFriendLoading = true;
-    this.service.addFriend(this.member.id, { friendId: this.friend.value })
+    if (!this.friend) {
+      this.toastr.error("You should choose a friend");
+    }
+
+    this.service.addFriend(this.member.id, { friendId: this.friend!.value })
       .subscribe(
         () => {
           this.addFriendLoading = false;
-          window.location.reload()
+          this.toastr.success('Friend added');
+          this.friend = undefined;
+          this.getMember(this.member.id);
         },
         error => {
           this.addFriendLoading = false;
