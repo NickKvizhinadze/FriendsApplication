@@ -35,14 +35,10 @@ export class SigninComponent implements OnInit {
     event.preventDefault;
     this.loading = true;
     this.errors = {};
-    if (!this.signUpForm.valid) {
-      this.loading = false;
-      return;
-    }
-
 
     this.service.authorize({ ...this.signUpForm.value, rememberMe: true }).
       subscribe(() => {
+        debugger
         this.router.navigate(['/home']);
         this.loading = false;
       }, error => {

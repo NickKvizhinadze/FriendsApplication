@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
 import { MemberCreateRequest } from './../../models/members/MemberCreateRequest';
@@ -29,7 +30,7 @@ export class AccountService {
           this.currentUser = user;
         }
         return user;
-      }));;
+      }));
   }
 
   register(request: SignUpRequest): Observable<any> {
